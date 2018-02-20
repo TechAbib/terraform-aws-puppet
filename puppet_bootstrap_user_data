@@ -1,0 +1,11 @@
+#!/bin/bash
+export DEBIAN_FRONTEND=noninteractive
+locale-gen en_GB.UTF-8
+wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
+dpkg -i puppet5-release-xenial.deb
+rm puppet5-release-xenial.deb
+apt update -yq
+apt upgrade -yq
+apt install ntp puppetserver -y
+systemctl start puppetserver
+systemctl enable puppetserver
